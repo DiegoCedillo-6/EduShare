@@ -1,56 +1,85 @@
-# Welcome to your Expo app 👋
+# EduShare
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+## Problema
+Muchos estudiantes tienen dificultades para encontrar apuntes, resúmenes, guías y otros materiales que les ayuden a estudiar. Esto ocurre especialmente cuando faltan a clases, no comprenden algún tema o necesitan prepararse para una evaluación. Además, no existe un espacio organizado donde puedan compartir fácilmente sus materiales con otros compañeros.
 
-## Get started
+## Solución
+EduShare será una plataforma web donde los estudiantes podrán compartir, buscar, consultar y descargar materiales educativos de diferentes asignaturas. Permitirá organizar los documentos por materias y cursos, facilitando el acceso a información útil. También promoverá la colaboración entre compañeros, el aprendizaje independiente y el apoyo académico.
 
-1. Install dependencies
+## Objetivos
+- Implementar el registro validando que todos los campos obligatorios estén completos antes de guardar la cuenta.
+- Desarrollar el inicio de sesión concediendo acceso solo con credenciales correctas y rechazando las erróneas.
+- Configurar Multer para aceptar exclusivamente archivos PDF de hasta 10 MB y rechazar otros formatos o tamaños.
+- Construir el buscador filtrando por nombre, asignatura y curso para retornar únicamente los registros coincidentes.
+- Habilitar la descarga de archivos configurando la ruta del servidor para entregar el documento original sin alteraciones.
+- Clasificar los documentos vinculándolos automáticamente en la base de datos según la asignatura seleccionada.
+- Configurar la vista de perfil programando la consulta por ID de usuario para mostrar solo los archivos de la cuenta activa.
+- Garantizar la persistencia conectando SQLite y la carpeta local del servidor para mantener los datos tras un reinicio.
+- Implementar el módulo de denuncias guardando los reportes en la base de datos y listándolos en el panel administrativo.
+- Proteger los recursos validando la sesión para impedir que un usuario modifique o elimine publicaciones ajenas.
+- Diseñar una interfaz responsiva utilizando CSS para asegurar una correcta visualización en diferentes dispositivos.
 
-   ```bash
-   npm install
-   ```
+## Habilidades
+- Lenguaje TypeScript para el desarrollo.
+- Node.js y Express para el backend.
+- Multer y pdf-parse para validar archivos PDF.
+- Bcrypt para el cifrado de contraseñas.
+- SQLite con sqlite3 para la base de datos.
+- HTML, CSS y TypeScript en el frontend.
+- Git y GitHub para control de versiones.
+- Visual Studio Code como entorno de trabajo.
+- Diseño de esquemas relacionales.
+- Pruebas funcionales y de usabilidad locales.
 
-2. Start the app
+## Alcance inicial
+Registro e inicio de sesión de usuarios.
 
-   ```bash
-   npx expo start
-   ```
+Publicación de documentos PDF con límite de tamaño.
 
-In the output, you'll find options to open the app in a
+Búsqueda de documentos por nombre, materia y curso.
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+Visualización y descarga de documentos compartidos.
 
-You can start developing by editing the files inside the **src/app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## Restricciones
+- Solo se permitirán archivos con formato PDF validados mediante Multer en el servidor.
+- Cada documento tendrá un tamaño máximo estricto de 10 MB controlado por restricciones de middleware.
+- Será necesario iniciar sesión activa para publicar, descargar o gestionar documentos.
+- Los archivos físicos se almacenarán localmente en la carpeta uploads del servidor Node.js.
+- La base de datos SQLite guardará los registros de usuarios, metadatos y reportes.
+- El proyecto se desarrollará localmente ejecutando TypeScript compilado desde Visual Studio Code.
+- El control de versiones del código se gestionará exclusivamente mediante Git.
+- La moderación de contenido ofensivo o inapropiado se gestionará mediante filtros manuales y denuncias de los usuarios.
+- La revisión de reportes y eliminación de contenido será realizada por el administrador en su panel.
+- La primera versión funcionará de manera local sin utilizar servicios de almacenamiento en la nube.
 
-## Get a fresh project
+## Desarrollo de la aplicación
 
-When you're ready, run:
+La interfaz está creada con Expo y React Native para poder ejecutarse en web, Android e iOS. Para iniciar el proyecto:
 
 ```bash
-npm run reset-project
+npm install
+npm run web
 ```
 
-This command will move the starter code to the **example** directory and create a blank **src/app** directory where you can start developing.
+Para abrir el menú de desarrollo de Expo en lugar de iniciar directamente la versión web, usa `npm start`.
 
-### Other setup steps
+### Estructura del código
 
-- To set up ESLint for linting, run `npx expo lint`, or follow our guide on ["Using ESLint and Prettier"](https://docs.expo.dev/guides/using-eslint/)
-- If you'd like to set up unit testing, follow our guide on ["Unit Testing with Jest"](https://docs.expo.dev/develop/unit-testing/)
-- Learn more about the TypeScript setup in this template in our guide on ["Using TypeScript"](https://docs.expo.dev/guides/typescript/)
+- `src/app/`: pantallas y navegación basada en archivos de Expo Router.
+- `src/components/`: piezas reutilizables de interfaz, como tarjetas, filtros, formularios y botones; componentes usados juntos en una sola pantalla se agrupan cuando simplifica el código.
+- `src/components/app-button.tsx` y `src/components/app-input.tsx`: botón y campo de formulario compartidos.
+- Cada uso de `AppButton` puede definir sus propios colores y tamaños mediante propiedades como `backgroundColor`, `textColor`, `height` y `borderRadius`, sin cambiar otros botones.
+- Los botones y controles pulsables dan una respuesta háptica al presionarlos; depende de que el dispositivo y el navegador tengan soporte de vibración.
+- `src/components/discovery-widgets.tsx`: búsqueda, filtros, banner y estados vacíos de la pantalla de descubrimiento.
+- `src/styles/`: estilos reutilizables de componentes.
+- `src/hooks/`: estado compartido de materiales y lógica de búsqueda/filtros.
+- `src/utils/`: funciones auxiliares compartidas, como la validación del tipo y tamaño del PDF.
+- `src/data/`: datos de ejemplo para desarrollar la interfaz.
+- `src/types/`: tipos compartidos entre pantallas, componentes y hooks.
+- `src/constants/`: colores y estilos compartidos.
 
-## Learn more
+Los archivos de código dentro de `src` se mantienen en un máximo de 100 líneas y las funciones también se limitan a 100 líneas. Los estilos reutilizables están en `src/styles/` y las funciones auxiliares compartidas viven en `src/utils/`. Las pantallas se componen con estos módulos para que los cambios de estilo y comportamiento se puedan hacer sin concentrar toda la aplicación en `index.tsx`.
 
-To learn more about developing your project with Expo, look at the following resources:
+### Estado de esta versión
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+La interfaz permite explorar y filtrar materiales de ejemplo, guardar recursos en la biblioteca y probar el formulario de publicación con la selección de PDF y límite de 10 MB. Los datos se mantienen solo mientras la aplicación está abierta. La autenticación real, SQLite, el almacenamiento local del servidor, la descarga desde el servidor y la moderación persistente todavía requieren conectar la API descrita en los objetivos; la validación del cliente no sustituye la validación de seguridad del servidor.

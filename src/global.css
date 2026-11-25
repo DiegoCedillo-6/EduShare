@@ -1,9 +1,14 @@
+/* Variables CSS para fuentes compartidas por la app y estilos web. */
+/* Modifica estos valores si quieres cambiar la familia tipográfica global. */
 :root {
+  /* Tipografía principal y alternativas disponibles en la interfaz web. */
   --font-display:
     Spline Sans, Inter, ui-sans-serif, system-ui, sans-serif, Apple Color Emoji, Segoe UI Emoji,
     Segoe UI Symbol, Noto Color Emoji;
+  /* Fuente monoespaciada para código y etiquetas técnicas. */
   --font-mono:
     ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, Liberation Mono, Courier New, monospace;
+  /* Fuentes redondeada y serif opcionales para otros estilos tipográficos. */
   --font-rounded: 'SF Pro Rounded', 'Hiragino Maru Gothic ProN', Meiryo, 'MS PGothic', sans-serif;
   --font-serif: Georgia, 'Times New Roman', serif;
 }
