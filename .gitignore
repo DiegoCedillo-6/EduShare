@@ -1,15 +1,15 @@
-# Learn more https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files
+# Archivos que Git debe omitir; agrega aquí artefactos locales, no código fuente.
 
-# dependencies
+# Dependencias instaladas por npm.
 node_modules/
 
-# Expo
+# Caché y resultados generados por Expo.
 .expo/
 dist/
 web-build/
 expo-env.d.ts
 
-# Native
+# Credenciales y archivos nativos locales.
 .kotlin/
 *.orig.*
 *.jks
@@ -18,26 +18,27 @@ expo-env.d.ts
 *.key
 *.mobileprovision
 
-# Metro
+# Archivos temporales del empaquetador Metro.
 .metro-health-check*
 
-# debug
+# Registros de depuración de gestores de paquetes.
 npm-debug.*
 yarn-debug.*
 yarn-error.*
 
-# macOS
+# Metadatos y claves locales de macOS.
 .DS_Store
 *.pem
 
-# local env files
+# Variables de entorno locales que no deben compartirse.
 .env*.local
 
-# typescript
+# Caché de compilación de TypeScript.
 *.tsbuildinfo
 
+# Carpeta opcional para conservar una copia de ejemplo del proyecto.
 example
 
-# generated native folders
+# Carpetas nativas generadas automáticamente por Expo.
 /ios
 /android

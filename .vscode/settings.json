@@ -1,4 +1,5 @@
 {
+  // Aplica arreglos de código al guardar, sin modificar archivos automáticamente.
   "editor.codeActionsOnSave": {
     "source.fixAll": "explicit",
     "source.organizeImports": "explicit",

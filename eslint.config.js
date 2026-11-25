@@ -2,7 +2,7 @@
 const { defineConfig } = require('eslint/config');
 const expoConfig = require('eslint-config-expo/flat');
 
-// Evita analizar los archivos generados durante la exportación web.
+// Combina la configuración de Expo y excluye la salida compilada de la revisión.
 module.exports = defineConfig([
   expoConfig,
   {

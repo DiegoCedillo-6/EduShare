@@ -1,1 +1,4 @@
-{ "recommendations": ["expo.vscode-expo-tools"] }
+{
+  // Extensión recomendada para ejecutar y depurar proyectos Expo desde VS Code.
+  "recommendations": ["expo.vscode-expo-tools"]
+}
